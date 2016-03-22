@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activity.user_info.UserInfoActivity"
+    android:id="@+id/layout"
+    android:weightSum="1.0">
+
+    <LinearLayout
+        android:layout_weight="0.4"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0px">
+        <LinearLayout
+            android:layout_weight="0.6"
+            android:layout_width="0px"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_weight="0.2"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:text="@string/general_back"
+                android:id="@+id/backBtn"
+                android:textSize="30sp" />
+
+            <Button
+                android:layout_weight="0.2"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:text="@string/user_info_write"
+                android:id="@+id/writeToNfcTagBtn"
+                android:textSize="30sp"/>
+        </LinearLayout>
+
+        <ListView
+            android:layout_weight="0.4"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:id="@+id/appearancesList" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_weight="0.6"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_height="0px">
+        <TextView
+            android:layout_weight="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_info_name"
+            android:id="@+id/textView"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_weight="0.1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameLabel"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_weight="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_info_surname"
+            android:id="@+id/textView2"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_weight="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/surnameLabel"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_weight="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_info_email"
+            android:id="@+id/textView3"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_weight="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emailLabel"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pl.devoxx.dxr.android" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/devoxx"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".activity.home.HomeActivity_"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:label="@string/app_name" >
+                <intent-filter>
+                    <action android:name="android.nfc.action.TECH_DISCOVERED"/>
+                </intent-filter>
+                <meta-data android:name="android.nfc.action.TECH_DISCOVERED" android:resource="@xml/tech_list"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.authentication.AuthenticationActivity_"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.home.HomeActivity_">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.home.HomeActivity_" />
+        </activity>
+        <activity
+            android:name=".activity.settings.SettingsActivity_"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.home.HomeActivity_">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.home.HomeActivity_" />
+        </activity>
+        <activity
+            android:name=".activity.info.InfoActivity_"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.info.InfoActivity_">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.home.HomeActivity_" />
+        </activity>
+        <activity
+            android:name=".activity.user_info.UserInfoActivity_"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:parentActivityName=".activity.home.HomeActivity_">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.home.HomeActivity_" />
+        </activity>
+        <activity
+            android:name=".activity.nfc.NfcConnectionActivity_"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:parentActivityName=".activity.user_info.UserInfoActivity_">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.user_info.UserInfoActivity_" />
+        </activity>
+        <activity
+            android:name=".activity.error.ErrorActivity_"
+            android:label="@string/app_name" >
+        </activity>
+    </application>
+
+</manifest>

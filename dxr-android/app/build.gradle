@@ -1,0 +1,112 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+def findOverriddenProperties(String filePath) {
+    def props = new Properties()
+    new File(filePath).withInputStream {
+        stream -> props.load(stream)
+    }
+    return props
+}
+
+def assetsPath= "${projectDir}/src/main/assets"
+def unfilteredAssetsPath = "${projectDir}/src/main/unfiltered-assets"
+
+def defaultPropertiesPath = "gradle.properties";
+def userPropertiesPath = "${System.properties['user.home']}/.gradle/gradle.properties"
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion '23.0.2'
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "pl.devoxx.dxr.android"
+        minSdkVersion 17
+        targetSdkVersion 17
+        versionCode 1
+        versionName "1.0"
+    }
+
+    task mergeApplicationProperties(type : Copy){
+        def defaultGradleProperties = findOverriddenProperties(defaultPropertiesPath)
+        def userGradleProperties = findOverriddenProperties(userPropertiesPath)
+
+        //override defaultGradleProperties with userGradleProperties
+        def overriddenProperties = defaultGradleProperties + userGradleProperties
+
+        from(unfilteredAssetsPath) {
+            include "application.properties"
+        }
+        into(assetsPath)
+
+        filter(ReplaceTokens, tokens: overriddenProperties)
+        outputs.upToDateWhen { false } // always execute this task
+    }
+
+    preBuild.dependsOn mergeApplicationProperties
+
+    signingConfigs {
+        release {
+            storeFile file("${signature_file}");
+            storePassword "${signature_store_password}"
+            keyAlias "${signature_key_alias}"
+            keyPassword "${signature_key_password}"
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE'
+        pickFirst 'META-INF/NOTICE'
+        pickFirst 'META-INF/NOTICE.txt'
+        pickFirst 'META-INF/notice.txt'
+        pickFirst 'META-INF/license.txt'
+        pickFirst 'META-INF/LICENSE.txt'
+    }
+}
+
+
+sourceSets {
+    testLocal{
+        java.srcDir file('/src/test/java')
+    }
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0]?.processResources?.manifestFile
+    }
+}
+
+def AAVersion = '3.3.2';
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile 'com.android.support:appcompat-v7:19.1.0'
+    compile 'com.google.zxing:android-integration:3.1.0'
+    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
+    compile 'pl.devoxx.dxr:dxr-api:1.0-SNAPSHOT'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.google.guava:guava:18.0'
+    compile 'joda-time:joda-time:2.7'
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    testCompile 'org.robolectric:robolectric:3.0'
+    testCompile 'junit:junit:4.+'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile 'org.assertj:assertj-core:1.6.1'
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DXR</string>
+    <string name="general_back">Back</string>
+    <string name="general_confirm">Confirm</string>
+
+    <string name="home_scan">Scan</string>
+
+    <string name="appearance_save_success">User\'s appearance saved!</string>
+    <string name="appearance_save_error">Error during saving user\'s appearance!</string>
+
+    <string name="registration_user_not_found">User not found!</string>
+    <string name="registration_user_already_appeared">User has already appeared at this place</string>
+    <string name="registration_user_paid_and_first_appearance">User has arrived first time at this place</string>
+    <string name="registration_user_didnt_pay">User is not allowed at this place</string>
+
+    <string name="not_synced_yet">Your application is probably not synchronized with server yet. Try again in 1 minute.</string>
+
+    <string name="relation_created">Tag successfully connected to user</string>
+    <string name="relation_already_exists_error">This tag is already connected to this user</string>
+    <string name="relation_for_tag_already_exists_error">This tag is already connected to another user</string>
+
+    <string name="menu_settings">Settings</string>
+    <string name="menu_info">Info</string>
+    <string name="menu_send_report">Send report</string>
+
+    <string name="appearance_type_changed">Appearance type changed</string>
+    <string name="sync_in_progress">Please wait until the phone is synchronized with the server</string>
+
+    <string name="auth_screen_provide_password">Provide the password to access the settings</string>
+
+    <string name="nfc_connection_user">User :</string>
+    <string name="nfc_connection_waiting">Waiting for NFC tag ...</string>
+
+    <string name="info_participants">Participants</string>
+    <string name="info_appearances">Appearances</string>
+    <string name="info_nfc_connections">NFC connections</string>
+    <string name="info_last_sync">Last synchronization</string>
+    <string name="info_last_person_sync">Last person sync</string>
+    <string name="info_last_person_sync_server_url">Server URL of last person sync</string>
+    <string name="info_last_sync_people_count">Last sync people count</string>
+
+    <string name="settings_save_url">Save server URL</string>
+    <string name="settings_update_participants">Update participants</string>
+
+    <string name="user_info_write">Write</string>
+    <string name="user_info_name">Name</string>
+    <string name="user_info_surname">Surname</string>
+    <string name="user_info_email">Email</string>
+
+    <string name="sponsor_success">Report sent</string>
+    <string name="sponsor_failure">"Sending report failed: "</string>
+    <string name="sponsor_notification">Please wait until you get notification that report was sent.</string>
+</resources>
